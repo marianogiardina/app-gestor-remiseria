@@ -11,6 +11,7 @@ import Repository.ChoferRepository;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -249,16 +250,18 @@ public class ViajeDao extends BaseDao<Viaje> {
 
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            ps.setObject(1, LocalDateTime.now().withDayOfMonth(1)); // Primer día del mes actual
-            ps.setObject(2, LocalDateTime.now().withDayOfMonth(LocalDateTime.now().toLocalDate().lengthOfMonth())); // Último día del mes actual
+            ps.setObject(1, LocalDate.now().withDayOfMonth(1)); // Primer día del mes actual
+            ps.setObject(2, LocalDate.now().plusMonths(1).withDayOfMonth(1)); // Primer dia del mes siguiente
 
             ResultSet rs = ps.executeQuery();
 
             List<BalanceMensualDTO> balancesMensuales = new ArrayList<>();
 
+
             while (rs.next()) {
 
                 Chofer chofer = getChoferFromResultSet(rs);
+
 
                 BalanceMensualDTO balanceMensualPorChofer = new BalanceMensualDTO(
                         chofer,

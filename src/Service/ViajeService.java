@@ -172,6 +172,7 @@ public class ViajeService extends BaseService<Viaje, ViajeDao> {
     }
 
     public Response<BalanceMensualDTO> realizarBalanceMensual() {
+
         try {
             Response<BalanceMensualDTO> response = dao.selectViajesMensual();
 
@@ -231,10 +232,10 @@ public class ViajeService extends BaseService<Viaje, ViajeDao> {
 
         }
 
-        promedioViajePorChofer = (float) totalViajes / contadorChoferes;
+        promedioViajePorChofer = contadorChoferes == 0 ? 0 : (float) totalViajes / contadorChoferes;
 
-        promedioSueldoChoferConAutoPropio = (float) ((contadorSueldoChoferConAutoPropio * 0.8) / contadorChoferConAutoPropio); // 80% del sueldo mensual si tiene auto propio
-        promedioSueldoChoferSinAutoPropio = (float) ((contadorSueldoChoferSinAutoPropio * 0.6) / contadorChoferSinAutoPropio); // 60% del sueldo mensual si no tiene auto propio
+        promedioSueldoChoferConAutoPropio = contadorChoferConAutoPropio == 0 ? 0 : (float) ((contadorSueldoChoferConAutoPropio * 0.8) / contadorChoferConAutoPropio); // 80% del sueldo mensual si tiene auto propio
+        promedioSueldoChoferSinAutoPropio = contadorChoferSinAutoPropio == 0 ? 0 : (float) ((contadorSueldoChoferSinAutoPropio * 0.6) / contadorChoferSinAutoPropio); // 60% del sueldo mensual si no tiene auto propio
 
         gananciaMensualPorChoferConAutoPropio = (float) (contadorSueldoChoferConAutoPropio * 0.2);
         gananciaMensualPorChoferSinAutoPropio = (float) (contadorSueldoChoferSinAutoPropio * 0.4);

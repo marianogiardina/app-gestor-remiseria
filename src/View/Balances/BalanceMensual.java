@@ -7,6 +7,8 @@ package View.Balances;
 import Controller.ViajeController;
 import DTO.BalanceMensualDTO;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Compumar
@@ -72,7 +74,7 @@ public class BalanceMensual extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         labelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        labelTitulo.setText("En este panel podras ver el balance mensual");
+        labelTitulo.setText("En este panel podras ver el balance mensual desde "+ LocalDate.now().withDayOfMonth(1)+" hasta "+LocalDate.now().plusMonths(1).withDayOfMonth(1));
 
         labelCantidadViajes.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         labelCantidadViajes.setText("Cantidad de viajes:");
