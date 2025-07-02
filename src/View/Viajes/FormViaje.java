@@ -70,7 +70,7 @@ public class FormViaje extends javax.swing.JPanel {
 
         for (Chofer chofer : choferes) {
 
-            //Agrego cada chofer al comboBox de choferes-->por default el comboBox muestra el chofer.toString() por eso lo modifico para que solo muestre el nombre.
+            //Agrego cada chofer disponible al comboBox de choferes-->por default el comboBox muestra el chofer.toString() por eso lo modifico para que solo muestre el nombre.
             if(chofer.isDisponible()){
 
                 inputChofer.addItem(chofer);
@@ -171,14 +171,6 @@ public class FormViaje extends javax.swing.JPanel {
 
             btnCreateViaje.setText("Actualizar Viaje");
             // Si es una actualización, cargo los datos del viaje en los campos correspondientes
-            /*if (viaje != null) {
-                inputOrigen.setText(viaje.getOrigen());
-                inputDestino.setText(viaje.getDestino());
-                inputKilometros.setText(String.valueOf(viaje.getKilometros()));
-                inputValorKm.setText(String.valueOf(viaje.getValorKm()));
-                inputEstadoViaje.setSelectedItem(viaje.getEstadoViaje());
-                inputChofer.setSelectedItem(viaje.getChofer());
-            }*/
 
             inputOrigen.setText(viajeExistente.getOrigen());
             inputDestino.setText(viajeExistente.getDestino());

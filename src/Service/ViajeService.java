@@ -137,6 +137,8 @@ public class ViajeService extends BaseService<Viaje, ViajeDao> {
 
     }
 
+    //En este metodo cargo con los datos necesarios del dto para cerrar la semana del chofer y los envio al controller
+
     public Response<SemanaChoferDTO> cerrarSemanaChoferes(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         try {
             Response<SemanaChoferDTO> response = dao.selectSemanaChofer(fechaInicio, fechaFin);
@@ -171,6 +173,8 @@ public class ViajeService extends BaseService<Viaje, ViajeDao> {
 
     }
 
+    //En este metodo hago algo similar en el que cierro la semana, pero llamo a otra funcion que procese la data que traigo desde el DAO
+
     public Response<BalanceMensualDTO> realizarBalanceMensual() {
 
         try {
@@ -189,6 +193,9 @@ public class ViajeService extends BaseService<Viaje, ViajeDao> {
             return new Response<>("Error al realizar el balance mensual: " + e.getMessage(), 500, false, "ViajeService", "realizarBalanceMensual");
         }
     }
+
+    //En esta funcion lo que hago es utilizar el primer constructor del DTO para procesaro los datos que voy a necesitar en la vista del balance mensual
+    //Recibo la lista con los balances mensuales de los choferes, y a partir de eso creo el DTO con la data que se mostrara en la vista.
 
     private BalanceMensualDTO procesarDataBalanceMensual(List<BalanceMensualDTO> listaBalanceMensual) {
 
@@ -245,6 +252,9 @@ public class ViajeService extends BaseService<Viaje, ViajeDao> {
         return new BalanceMensualDTO(totalViajes, gananciaMensualTotal, promedioSueldoChoferSinAutoPropio, promedioSueldoChoferConAutoPropio,
                 gananciaMensualPorChoferSinAutoPropio, gananciaMensualPorChoferConAutoPropio, promedioViajePorChofer);
     }
+
+    //En esta funcion actualizo la disponibilidad de los choferes, dependiendo del metodo que la envie, voy a evaluar si pasa desde 'en curso' a 'finalizado',-
+    //o si se borro un viaje en curso, para que el estado del chofer no quede en curso
 
     private void actualizarDisponibilidadChofer(Viaje viaje, String metodo) {
 
