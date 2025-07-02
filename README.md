@@ -9,12 +9,32 @@ Esta aplicación permite gestionar:
 - Autos de la remisería
 - Viajes realizados
 
+## Base de datos
+
+- El script de base de datos se encuentra en db/db.sql
+
 ## Tecnologías utilizadas
 
 - MySQL
   - Conector de mysql en la carpeta lib/ 
 - Java 17  
 
+## Aspectos tecnicos
+
+- Login del sistema
+  - usuario: invitado
+  - contraseña: 123
+
+- Configuracion de base de datos
+  - Se encuentra en el archivo src/DAO/DbConn 
+
+````java
+    // src/DAO/DbConn 
+    private final String db = "app_gestor_remiseria_avanzada"; // Aca va el nombre de tu base de datos
+    private final String url = "jdbc:mysql://localhost:3306/"+db;
+    private final String user = "root";
+    private final String password = "";
+````
 
 ## Flujo de programa
 
